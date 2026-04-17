@@ -129,10 +129,8 @@ if (contactForm) {
     const data = Object.fromEntries(formData.entries());
     
     try {
-      const response = await fetch("http://localhost:5000/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+      const BASE_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+      const response = await fetch(`${BASE_URL}/api/contact`, {
       });
       
       const result = await response.json();
