@@ -11,11 +11,27 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Health check endpoint
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'Server is running', timestamp: new Date().toISOString() });
+});
+
 // Connect to MongoDB
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/portfolio-contact';
+console.log('Attempting to connect to MongoDB with URI:', MONGO_URI.substring(0, 50) + '...');
 mongoose.connect(MONGO_URI)
-  .then(() => console.log('Connected to MongoDB!'))
-  .catch(err => console.error('MongoDB connection error:', err));
+  .then(() => {
+    console.log('✅ Connected to MongoDB!');
+    app.get('/db-status', (req, res) => {
+      res.status(200).json({ status: 'MongoDB is connected', message: 'Database is ready' });
+    });
+  })
+  .catch(err => {
+    console.error('❌ MongoDB connection error:', err.message);
+    app.get('/db-status', (req, res) => {
+      res.status(500).json({ status: 'MongoDB connection failed', error: err.message });
+    });
+  });
 
 // Create Contact Schema
 const contactSchema = new mongoose.Schema({
