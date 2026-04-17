@@ -129,7 +129,7 @@ if (contactForm) {
     const data = Object.fromEntries(formData.entries());
     
     try {
-      const BASE_URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
+      const BASE_URL = import.meta.env.VITE_BACKEND_URL || "https://portfolio-e0gk.onrender.com";
       const response = await fetch(`${BASE_URL}/api/contact`, {
       });
       
