@@ -1,0 +1,151 @@
+import "./style.css";
+import personalImg from "./assets/personal image.png";
+import cvImg from "./assets/CV.png";
+import introAudio from "./assets/self intoduction.mp3";
+import { About } from "./components/About.js";
+import { Blogs } from "./components/Blogs.js";
+import { Works } from "./components/work.js";
+import { Contact } from "./contact.js";
+
+document.querySelector("#app").innerHTML = `
+  <div class="container">
+    <header class="navbar">
+      <div class="logo">
+        <span class="logo-icon">S</span>
+        <span class="logo-text">Sankalpa <span class="highlight-Blue">Poudel</span></span>
+      </div>
+      <nav class="nav-links">
+        <a href="#about">About</a>
+        <a href="#blogs">Blogs</a>
+        <a href="#service">Service</a>
+        <a href="#works">Works</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <a href="#contact" class="btn-primary" style="text-decoration: none;">Contact Me</a>
+    </header>
+
+    <main class="hero">
+      <div class="hero-left">
+        <p class="tagline">Sankalpa Poudel <i class="fa-solid fa-chevron-right"></i></p>
+        <h1 class="hero-title">
+          Product Designer <span class="highlight-purple">&</span><br>
+          <span class="highlight-purple">visual Developer.</span>
+        </h1>
+        <p class="hero-desc">
+          I specialize in UI/UX Design, Responsive Web Design,<br>
+          and visual Development.
+        </p>
+        
+        <div class="hero-buttons">
+          <a href="${cvImg}" download="Sankalpa_Poudel_CV.png" class="btn-text highlight-purple-text">
+            <i class="fa-solid fa-cloud-arrow-down"></i> Download CV
+          </a>
+          <a href="${cvImg}" target="_blank" class="btn-text highlight-purple-text">
+            <i class="fa-solid fa-eye"></i> View CV
+          </a>
+          <button id="play-intro-btn" class="btn-text" style="background: none; border: none; cursor: pointer; padding: 0; outline: none;">
+            <span class="play-icon"><i class="fa-solid fa-play"></i></span> Self Introduction
+          </button>
+          <audio id="intro-audio" src="${introAudio}"></audio>
+        </div>
+
+        <div class="stats">
+          <div class="stat-box">
+            <h2>1+</h2>
+            <p>YEARS<br>EXPERIENCE</p>
+          </div>
+          <div class="stat-box">
+            <h2>10+</h2>
+            <p>PROJECTS<br>COMPLETED</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="image-wrapper">
+          <div class="img-circle">
+            <img src="${personalImg}" alt="Sankalpa Poudel" class="hero-img">
+          </div>
+          
+          <div class="icon-orbit">
+            <div class="float-icon float-be"><i class="fa-brands fa-behance"></i></div>
+            <div class="float-icon float-db"><i class="fa-brands fa-dribbble"></i></div>
+            <div class="float-icon float-gh"><i class="fa-brands fa-github"></i></div>
+            <div class="float-icon float-fb"><i class="fa-brands fa-facebook-f"></i></div>
+            <div class="float-icon float-wa"><i class="fa-brands fa-whatsapp"></i></div>
+            <div class="float-icon float-gg"><i class="fa-brands fa-google"></i></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    ${Works()}
+    ${About()}
+    ${Blogs()}
+    ${Contact()}
+
+    <footer class="brands">
+      <div class="brand">fiverr</div>
+      <div class="brand">freelancer</div>
+      <div class="brand highlight-green">upwork</div>
+      <div class="brand">peopleperhour</div>
+      <div class="brand">99designs</div>
+    </footer>
+  </div>
+`;
+
+// Audio play logic
+const playBtn = document.getElementById("play-intro-btn");
+const introAudioEl = document.getElementById("intro-audio");
+
+if (playBtn && introAudioEl) {
+  playBtn.addEventListener("click", () => {
+    if (introAudioEl.paused) {
+      introAudioEl.play();
+      playBtn.querySelector("i").classList.remove("fa-play");
+      playBtn.querySelector("i").classList.add("fa-pause");
+    } else {
+      introAudioEl.pause();
+      playBtn.querySelector("i").classList.remove("fa-pause");
+      playBtn.querySelector("i").classList.add("fa-play");
+    }
+  });
+
+  introAudioEl.addEventListener("ended", () => {
+    playBtn.querySelector("i").classList.remove("fa-pause");
+    playBtn.querySelector("i").classList.add("fa-play");
+  });
+}
+
+// Contact form submission logic
+const contactForm = document.getElementById("contactForm");
+if (contactForm) {
+  contactForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    
+    // Get form data
+    const formData = new FormData(contactForm);
+    const data = Object.fromEntries(formData.entries());
+    
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok) {
+        alert(result.message); // Successful submission
+        contactForm.reset();   // Clear all inputs
+      } else {
+        alert(result.error || "Failed to send message. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting contact form:", error);
+      alert("Failed to connect to the backend server. Make sure it is running.");
+    }
+  });
+}
