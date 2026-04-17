@@ -131,6 +131,11 @@ if (contactForm) {
     try {
       const BASE_URL = import.meta.env.VITE_BACKEND_URL || "https://portfolio-e0gk.onrender.com";
       const response = await fetch(`${BASE_URL}/api/contact`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       });
       
       const result = await response.json();
