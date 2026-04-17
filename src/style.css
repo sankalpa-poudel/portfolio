@@ -132,3 +132,46 @@ a { text-decoration: none; color: inherit; }
 .info-box p { color: var(--text-primary); font-size: 1.1rem; font-weight: 500; margin: 0;}
 .work-link:hover { background: var(--purple-light); transform: scale(1.1); }
 
+/* Responsive Design (PC vs Mobile) */
+@media screen and (max-width: 1024px) {
+  /* Allow natural scaling below large PC */
+  .hero { flex-direction: column-reverse; text-align: center; gap: 60px; justify-content: center; margin-top: 40px; }
+  .hero-left { max-width: 100%; display: flex; flex-direction: column; align-items: center; }
+  .hero-title { font-size: 3.5rem; }
+  .hero-buttons { justify-content: center; flex-wrap: wrap; }
+  .stats { justify-content: center; }
+  
+  .hero-right { width: 100%; max-width: 450px; height: 450px; margin: 0 auto; }
+  .img-circle { width: 350px; height: 350px; }
+  .float-icon { width: 35px; height: 35px; margin: -17.5px 0 0 -17.5px; font-size: 1.1rem; }
+  
+  .contact-container { flex-direction: column; }
+  .contact-info { width: 100%; }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar { flex-wrap: wrap; justify-content: center; gap: 20px; text-align: center; }
+  .nav-links { display: none; /* Can be replaced with a hamburger menu later */ }
+  .hero-title { font-size: 2.8rem; line-height: 1.2; }
+  .hero-right { max-width: 350px; height: 350px; }
+  .img-circle { width: 280px; height: 280px; }
+  .float-icon { width: 30px; height: 30px; margin: -15px 0 0 -15px; font-size: 1rem; }
+  
+  .brands { flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 50px; }
+}
+
+@media screen and (max-width: 480px) {
+  .container { padding: 0 20px; }
+  .hero-title { font-size: 2.2rem; }
+  .hero-desc { font-size: 0.85rem; }
+  .stats { flex-direction: column; gap: 15px; width: 100%; }
+  .stat-box { justify-content: center; text-align: center; }
+  
+  .hero-buttons { gap: 15px; flex-direction: column; }
+  
+  .hero-right { max-width: 280px; height: 280px; }
+  .img-circle { width: 220px; height: 220px; }
+  
+  .section-title { font-size: 2.2rem; }
+}
+
