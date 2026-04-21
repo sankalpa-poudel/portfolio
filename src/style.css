@@ -106,13 +106,47 @@ a { text-decoration: none; color: inherit; }
 .icon-orbit { position: absolute; top: 0; left: 0; width: 100%; height: 100%; animation: spin 15s linear infinite; }
 .icon-orbit .float-icon { animation: counter-spin 15s linear infinite; }
 @keyframes counter-spin { 100% { transform: rotate(-360deg); } }
-.float-icon { position: absolute; width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; margin: -20px 0 0 -20px; }
-.float-db { top: 50%; left: 90%; background: #ea4c89; color: white; }
-.float-wa { top: 84.64%; left: 70%; background: #25D366; color: white; }
-.float-gg { top: 84.64%; left: 30%; background: white; color: #DB4437; }
-.float-gh { top: 50%; left: 10%; background: var(--purple-light); color: white; }
-.float-be { top: 15.36%; left: 30%; background: white; color: #1769ff; }
-.float-fb { top: 15.36%; left: 70%; background: #1877F2; color: white; }
+.float-icon { position: absolute; width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; margin: -20px 0 0 -20px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+
+/* Rotating logic for groups */
+.orbit-group { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; visibility: hidden; }
+.social-group { animation: fadeInOut3 30s infinite; animation-delay: 0s; }
+.dev-group { animation: fadeInOut3 30s infinite; animation-delay: 10s; }
+.tool-group { animation: fadeInOut3 30s infinite; animation-delay: 20s; }
+
+@keyframes fadeInOut3 {
+  0% { opacity: 0; visibility: hidden; }
+  3%, 30% { opacity: 1; visibility: visible; }
+  33.33%, 100% { opacity: 0; visibility: hidden; }
+}
+
+/* Positions around the circle */
+.pos-1 { top: 15.36%; left: 30%; }
+.pos-2 { top: 15.36%; left: 70%; }
+.pos-3 { top: 50%; left: 90%; }
+.pos-4 { top: 84.64%; left: 70%; }
+.pos-5 { top: 84.64%; left: 30%; }
+.pos-6 { top: 50%; left: 10%; }
+
+/* Icon Colors */
+.bg-yt { background: white; color: #FF0000; }
+.bg-fb { background: #1877F2; color: white; }
+.bg-x { background: #000000; color: white; border: 1px solid #333; }
+.bg-wa { background: #25D366; color: white; }
+.bg-gg { background: white; color: #DB4437; }
+.bg-gh { background: var(--purple-light); color: white; }
+.bg-html { background: #E34F26; color: white; }
+.bg-css { background: #1572B6; color: white; }
+.bg-js { background: #F7DF1E; color: black; }
+.bg-node { background: #339933; color: white; }
+.bg-react { background: #20232a; color: #61DAFB; }
+.bg-git { background: #F05032; color: white; }
+.bg-vscode { background: #007ACC; color: white; }
+.bg-android { background: #3DDC84; color: white; }
+.bg-intellij { background: #000000; color: #FF318C; }
+.bg-figma { background: #F24E1E; color: white; }
+.bg-docker { background: #2496ED; color: white; }
+.bg-npm { background: #CB3837; color: white; }
 
 .feedback-badge { position: absolute; bottom: 15%; right: -20px; background: #e0ccff; color: var(--bg-color); padding: 15px 20px; border-radius: 15px; border-bottom-left-radius: 0; width: 280px; font-size: 0.8rem; }
 .fb-header { display: flex; align-items: center; gap: 8px; margin-bottom: 5px; font-weight: 700; color: var(--purple-light); }

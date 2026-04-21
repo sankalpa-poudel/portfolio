@@ -78,12 +78,33 @@ document.querySelector("#app").innerHTML = `
           </div>
           
           <div class="icon-orbit">
-            <div class="float-icon float-be"><i class="fa-brands fa-behance"></i></div>
-            <div class="float-icon float-db"><i class="fa-brands fa-dribbble"></i></div>
-            <div class="float-icon float-gh"><i class="fa-brands fa-github"></i></div>
-            <div class="float-icon float-fb"><i class="fa-brands fa-facebook-f"></i></div>
-            <div class="float-icon float-wa"><i class="fa-brands fa-whatsapp"></i></div>
-            <div class="float-icon float-gg"><i class="fa-brands fa-google"></i></div>
+            <!-- Social Icons Group -->
+            <div class="orbit-group social-group">
+              <div class="float-icon pos-1 bg-yt"><i class="fa-brands fa-youtube"></i></div>
+              <div class="float-icon pos-2 bg-fb"><i class="fa-brands fa-facebook-f"></i></div>
+              <div class="float-icon pos-3 bg-x"><i class="fa-brands fa-x-twitter"></i></div>
+              <div class="float-icon pos-4 bg-wa"><i class="fa-brands fa-whatsapp"></i></div>
+              <div class="float-icon pos-5 bg-gg"><i class="fa-brands fa-google"></i></div>
+              <div class="float-icon pos-6 bg-gh"><i class="fa-brands fa-github"></i></div>
+            </div>
+            <!-- Development Icons Group -->
+            <div class="orbit-group dev-group">
+              <div class="float-icon pos-1 bg-html"><i class="fa-brands fa-html5"></i></div>
+              <div class="float-icon pos-2 bg-css"><i class="fa-brands fa-css3-alt"></i></div>
+              <div class="float-icon pos-3 bg-js"><i class="fa-brands fa-js"></i></div>
+              <div class="float-icon pos-4 bg-node"><i class="fa-brands fa-node-js"></i></div>
+              <div class="float-icon pos-5 bg-react"><i class="fa-brands fa-react"></i></div>
+              <div class="float-icon pos-6 bg-git"><i class="fa-brands fa-git-alt"></i></div>
+            </div>
+            <!-- Tools Icons Group -->
+            <div class="orbit-group tool-group">
+              <div class="float-icon pos-1 bg-vscode"><i class="fa-solid fa-code"></i></div>
+              <div class="float-icon pos-2 bg-android"><i class="fa-brands fa-android"></i></div>
+              <div class="float-icon pos-3 bg-intellij"><i class="fa-brands fa-java"></i></div>
+              <div class="float-icon pos-4 bg-figma"><i class="fa-brands fa-figma"></i></div>
+              <div class="float-icon pos-5 bg-docker"><i class="fa-brands fa-docker"></i></div>
+              <div class="float-icon pos-6 bg-npm"><i class="fa-brands fa-npm"></i></div>
+            </div>
           </div>
         </div>
       </div>
