@@ -8,6 +8,15 @@ import { Works } from "./components/work.js";
 import { Contact } from "./contact.js";
 
 document.querySelector("#app").innerHTML = `
+  <div class="stars-container">
+    <span class="shooting-star" style="left: 10%; animation-delay: 0s; animation-duration: 3s;"></span>
+    <span class="shooting-star" style="left: 40%; animation-delay: 1.2s; animation-duration: 2.5s;"></span>
+    <span class="shooting-star" style="left: 70%; animation-delay: 2.5s; animation-duration: 4s;"></span>
+    <span class="shooting-star" style="left: 90%; animation-delay: 0.5s; animation-duration: 3.2s;"></span>
+    <span class="shooting-star" style="left: 20%; animation-delay: 1.8s; animation-duration: 2.9s;"></span>
+    <span class="shooting-star" style="left: 60%; animation-delay: 3.1s; animation-duration: 3.7s;"></span>
+    <span class="shooting-star" style="left: 85%; animation-delay: 4s; animation-duration: 2.2s;"></span>
+  </div>
   <div class="container">
     <header class="navbar">
       <div class="logo">

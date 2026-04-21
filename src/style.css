@@ -24,7 +24,37 @@ body {
 
 a { text-decoration: none; color: inherit; }
 
+.stars-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.shooting-star {
+  position: absolute;
+  top: -150px;
+  width: 2px;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 1));
+  border-radius: 50%;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.8));
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translate(0, 0) rotate(45deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translate(-100vw, 100vh) rotate(45deg); opacity: 0; }
+}
+
 .container {
+  position: relative;
+  z-index: 1;
   max-width: 1600px; /* Increased from 1200px to make the portfolio wider on PCs */
   width: 95%;
   margin: 0 auto;
