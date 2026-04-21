@@ -131,7 +131,7 @@ a { text-decoration: none; color: inherit; }
 /* Icon Colors */
 .bg-yt { background: white; color: #FF0000; }
 .bg-fb { background: #1877F2; color: white; }
-.bg-x { background: #000000; color: white; border: 1px solid #333; }
+.bg-messenger { background: linear-gradient(45deg, #00C6FF, #0078FF); color: white; }
 .bg-wa { background: #25D366; color: white; }
 .bg-gg { background: white; color: #DB4437; }
 .bg-gh { background: var(--purple-light); color: white; }

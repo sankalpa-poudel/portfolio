@@ -82,7 +82,7 @@ document.querySelector("#app").innerHTML = `
             <div class="orbit-group social-group">
               <div class="float-icon pos-1 bg-yt"><i class="fa-brands fa-youtube"></i></div>
               <div class="float-icon pos-2 bg-fb"><i class="fa-brands fa-facebook-f"></i></div>
-              <div class="float-icon pos-3 bg-x"><i class="fa-brands fa-x-twitter"></i></div>
+              <div class="float-icon pos-3 bg-messenger"><i class="fa-brands fa-facebook-messenger"></i></div>
               <div class="float-icon pos-4 bg-wa"><i class="fa-brands fa-whatsapp"></i></div>
               <div class="float-icon pos-5 bg-gg"><i class="fa-brands fa-google"></i></div>
               <div class="float-icon pos-6 bg-gh"><i class="fa-brands fa-github"></i></div>
