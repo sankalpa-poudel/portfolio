@@ -158,7 +158,7 @@ if (contactForm) {
     const data = Object.fromEntries(formData.entries());
     
     try {
-      const BASE_URL = import.meta.env.VITE_BACKEND_URL || "https://portfolio-e0gk.onrender.com";
+      const BASE_URL = import.meta.env.VITE_BACKEND_URL || "https://sankalpa-backend-1d5u.onrender.com";
       const response = await fetch(`${BASE_URL}/api/contact`, {
         method: 'POST',
         headers: {

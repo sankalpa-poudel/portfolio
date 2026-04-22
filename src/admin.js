@@ -1,4 +1,4 @@
-const API_URL = 'https://portfolio-e0gk.onrender.com/api/contact';
+const API_URL = 'https://sankalpa-backend-1d5u.onrender.com/api/contact';
 
 // Fetch all messages
 async function fetchMessages() {
