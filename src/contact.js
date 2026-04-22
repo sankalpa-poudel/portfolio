@@ -13,24 +13,24 @@ export function Contact() {
             <input type="email" name="email" placeholder="Your Email" required>
           </div>
           <div class="phone-input-group">
-            <select name="countryCode" id="countryCode" required style="padding: 10px; border: 1px solid #666; border-radius: 8px; background-color: #1a1a1a; color: #fff; font-family: inherit; min-width: 120px;">
-              <option value="">Select Country</option>
-              <option value="+977">🇳🇵 Nepal (+977)</option>
-              <option value="+1">🇺🇸 USA/Canada (+1)</option>
-              <option value="+44">🇬🇧 UK (+44)</option>
-              <option value="+91">🇮🇳 India (+91)</option>
-              <option value="+92">🇵🇰 Pakistan (+92)</option>
-              <option value="+880">🇧🇩 Bangladesh (+880)</option>
-              <option value="+886">🇹🇼 Taiwan (+886)</option>
-              <option value="+60">🇲🇾 Malaysia (+60)</option>
-              <option value="+62">🇮🇩 Indonesia (+62)</option>
-              <option value="+81">🇯🇵 Japan (+81)</option>
-              <option value="+86">🇨🇳 China (+86)</option>
-              <option value="+33">🇫🇷 France (+33)</option>
-              <option value="+49">🇩🇪 Germany (+49)</option>
-              <option value="+61">🇦🇺 Australia (+61)</option>
+            <select name="countryCode" id="countryCode" required style="padding: 10px; border: 1px solid #666; border-radius: 8px; background-color: #1a1a1a; color: #fff; font-family: inherit; min-width: 100px;">
+              <option value="">Select</option>
+              <option value="+977">🇳🇵 +977</option>
+              <option value="+1">🇺🇸 +1</option>
+              <option value="+44">🇬🇧 +44</option>
+              <option value="+91">🇮🇳 +91</option>
+              <option value="+92">🇵🇰 +92</option>
+              <option value="+880">🇧🇩 +880</option>
+              <option value="+886">🇹🇼 +886</option>
+              <option value="+60">🇲🇾 +60</option>
+              <option value="+62">🇮🇩 +62</option>
+              <option value="+81">🇯🇵 +81</option>
+              <option value="+86">🇨🇳 +86</option>
+              <option value="+33">🇫🇷 +33</option>
+              <option value="+49">🇩🇪 +49</option>
+              <option value="+61">🇦🇺 +61</option>
             </select>
-            <input type="tel" name="phone" placeholder="Phone number (digits only)" required pattern="[0-9]+" title="Please enter only digits for the phone number">
+            <input type="tel" name="phone" placeholder="10-digit number" required pattern="[0-9]{10}" title="Phone number must be exactly 10 digits">
           </div>
           <div class="input-group">
             <textarea name="message" rows="5" placeholder="Your Message" required></textarea>

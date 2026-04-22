@@ -175,9 +175,9 @@ if (contactForm) {
       return;
     }
     
-    // Validate phone number length (typically 6-15 digits)
-    if (data.phone.length < 6 || data.phone.length > 15) {
-      alert("Phone number must be between 6 and 15 digits.");
+    // Validate phone number is exactly 10 digits
+    if (data.phone.length !== 10) {
+      alert("Phone number must be exactly 10 digits.");
       return;
     }
     
