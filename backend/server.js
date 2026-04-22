@@ -17,7 +17,7 @@ app.get('/health', (req, res) => {
 });
 
 // Connect to MongoDB
-const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/portfolio-contact';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://sankalpa10:sankalpa%4010%23@cluster0.e28qekr.mongodb.net/portfolio-contact?retryWrites=true&w=majority&appName=Cluster0';
 console.log('Attempting to connect to MongoDB with URI:', MONGO_URI.substring(0, 50) + '...');
 mongoose.connect(MONGO_URI)
   .then(() => {
