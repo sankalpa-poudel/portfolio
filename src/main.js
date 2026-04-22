@@ -157,6 +157,37 @@ if (contactForm) {
     const formData = new FormData(contactForm);
     const data = Object.fromEntries(formData.entries());
     
+    // Validate country code is selected
+    if (!data.countryCode) {
+      alert("Please select a country code.");
+      return;
+    }
+    
+    // Validate phone number is not empty
+    if (!data.phone || data.phone.trim() === "") {
+      alert("Please enter a phone number.");
+      return;
+    }
+    
+    // Validate phone number has only digits
+    if (!/^\d+$/.test(data.phone)) {
+      alert("Phone number must contain only digits.");
+      return;
+    }
+    
+    // Validate phone number length (typically 6-15 digits)
+    if (data.phone.length < 6 || data.phone.length > 15) {
+      alert("Phone number must be between 6 and 15 digits.");
+      return;
+    }
+    
+    // Combine country code with phone number
+    const fullPhone = data.countryCode + data.phone;
+    data.phone = fullPhone;
+    
+    // Remove the separate countryCode field as it's now combined
+    delete data.countryCode;
+    
     try {
       const BASE_URL = "https://sankalpa-backend-1d5u.onrender.com";
       const response = await fetch(`${BASE_URL}/api/contact`, {
