@@ -17,7 +17,7 @@ app.get('/health', (req, res) => {
 });
 
 // Connect to MongoDB
-const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://sankalpa10:sankalpa%4010%23@cluster0.e28qekr.mongodb.net/portfolio-contact?retryWrites=true&w=majority&appName=Cluster0';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://sankalpa_poudel:sankalpa%4010%23@sankalpa-admin1.umhkomd.mongodb.net/portfolio-contact?retryWrites=true&w=majority&appName=Sankalpa-admin1';
 console.log('Attempting to connect to MongoDB with URI:', MONGO_URI.substring(0, 50) + '...');
 mongoose.connect(MONGO_URI)
   .then(() => {
