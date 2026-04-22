@@ -6,7 +6,6 @@ import { About } from "./components/About.js";
 import { Blogs } from "./components/Blogs.js";
 import { Works } from "./components/work.js";
 import { Contact } from "./contact.js";
-
 document.querySelector("#app").innerHTML = `
   <div class="stars-container">
     <span class="shooting-star" style="left: 10%; animation-delay: 0s; animation-duration: 3s;"></span>
