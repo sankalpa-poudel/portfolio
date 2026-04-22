@@ -59,6 +59,19 @@ export function Contact() {
           </div>
         </div>
       </div>
+      
+      <!-- Bot Detection Modal -->
+      <div id="botDetectionModal" class="bot-modal" style="display: none;">
+        <div class="bot-modal-content">
+          <h3>Human Verification Required</h3>
+          <p>Click the emoji that matches the instruction:</p>
+          <p id="emojiInstruction" style="font-weight: 600; color: var(--purple); margin: 15px 0;">Find the smiley face 😊</p>
+          <div class="emoji-grid" id="emojiGrid">
+            <!-- Emojis will be generated here -->
+          </div>
+          <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-secondary);">This helps us verify you're human</p>
+        </div>
+      </div>
     </section>
   `;
 }
