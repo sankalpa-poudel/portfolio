@@ -166,6 +166,19 @@ if (contactForm) {
     // Remove humanVerify from data before sending
     delete data.humanVerify;
     
+    // Validate name is not empty
+    if (!data.name || data.name.trim() === "") {
+      alert("Please enter your name.");
+      return;
+    }
+    
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!data.email || !emailRegex.test(data.email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+    
     // Validate country code is selected
     if (!data.countryCode) {
       alert("Please select a country code.");
