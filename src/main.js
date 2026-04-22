@@ -147,15 +147,46 @@ if (playBtn && introAudioEl) {
   });
 }
 
+// CAPTCHA logic
+function generateCaptcha() {
+  const num1 = Math.floor(Math.random() * 20) + 1;
+  const num2 = Math.floor(Math.random() * 20) + 1;
+  const correctAnswer = num1 + num2;
+  
+  const questionElement = document.getElementById("captchaQuestion");
+  if (questionElement) {
+    questionElement.textContent = `${num1} + ${num2} = ?`;
+    questionElement.setAttribute("data-answer", correctAnswer);
+  }
+}
+
+// Generate CAPTCHA when page loads
+generateCaptcha();
+
 // Contact form submission logic
 const contactForm = document.getElementById("contactForm");
 if (contactForm) {
   contactForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     
+    // Validate CAPTCHA
+    const captchaQuestion = document.getElementById("captchaQuestion");
+    const captchaAnswer = document.getElementById("captchaAnswer");
+    const correctAnswer = parseInt(captchaQuestion.getAttribute("data-answer"));
+    
+    if (parseInt(captchaAnswer.value) !== correctAnswer) {
+      alert("Incorrect verification. Please try again.");
+      generateCaptcha();
+      captchaAnswer.value = "";
+      return;
+    }
+    
     // Get form data
     const formData = new FormData(contactForm);
     const data = Object.fromEntries(formData.entries());
+    
+    // Remove captchaAnswer from data
+    delete data.captchaAnswer;
     
     // Validate country code is selected
     if (!data.countryCode) {
@@ -203,6 +234,7 @@ if (contactForm) {
       if (response.ok) {
         alert(result.message); // Successful submission
         contactForm.reset();   // Clear all inputs
+        generateCaptcha();     // Generate new CAPTCHA for next submission
       } else {
         alert(result.error || "Failed to send message. Please try again.");
       }

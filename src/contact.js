@@ -35,6 +35,12 @@ export function Contact() {
           <div class="input-group">
             <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
           </div>
+          <div class="verification-group">
+            <div class="captcha-box">
+              <span id="captchaQuestion">5 + 3 = ?</span>
+              <input type="number" id="captchaAnswer" placeholder="Answer" required>
+            </div>
+          </div>
           <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
         </form>
         
