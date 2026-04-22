@@ -36,10 +36,10 @@ export function Contact() {
             <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
           </div>
           <div class="verification-group">
-            <div class="captcha-box">
-              <span id="captchaQuestion">5 + 3 = ?</span>
-              <input type="number" id="captchaAnswer" placeholder="Answer" required>
-            </div>
+            <label class="checkbox-label">
+              <input type="checkbox" name="humanVerify" required>
+              <span>I'm not a robot</span>
+            </label>
           </div>
           <button type="submit" class="btn-primary" style="width: 100%;">Send Message</button>
         </form>
@@ -57,19 +57,6 @@ export function Contact() {
             <i class="fa-solid fa-phone highlight-purple-text"></i>
             <p>+977 9767888231</p>
           </div>
-        </div>
-      </div>
-      
-      <!-- Bot Detection Modal -->
-      <div id="botDetectionModal" class="bot-modal" style="display: none;">
-        <div class="bot-modal-content">
-          <h3>Human Verification Required</h3>
-          <p>Click the emoji that matches the instruction:</p>
-          <p id="emojiInstruction" style="font-weight: 600; color: var(--purple); margin: 15px 0;">Find the smiley face 😊</p>
-          <div class="emoji-grid" id="emojiGrid">
-            <!-- Emojis will be generated here -->
-          </div>
-          <p style="margin-top: 15px; font-size: 0.9rem; color: var(--text-secondary);">This helps us verify you're human</p>
         </div>
       </div>
     </section>

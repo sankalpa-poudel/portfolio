@@ -147,85 +147,9 @@ if (playBtn && introAudioEl) {
   });
 }
 
-// Bot Detection & Emoji Verification Logic
-const submittedData = new Set();
-let formStartTime = null;
-let isHumanVerified = false;
-
-const emojiOptions = [
-  { emoji: '😊', name: 'smiley face', instruction: 'Find the smiley face 😊' },
-  { emoji: '🎉', name: 'party popper', instruction: 'Find the party popper 🎉' },
-  { emoji: '🚀', name: 'rocket', instruction: 'Find the rocket 🚀' },
-  { emoji: '⭐', name: 'star', instruction: 'Find the star ⭐' },
-  { emoji: '❤️', name: 'heart', instruction: 'Find the heart ❤️' },
-  { emoji: '🔥', name: 'fire', instruction: 'Find the fire 🔥' },
-];
-
-function generateEmojiChallenge() {
-  const correctEmoji = emojiOptions[Math.floor(Math.random() * emojiOptions.length)];
-  const shuffledEmojis = [...emojiOptions].sort(() => Math.random() - 0.5);
-  
-  document.getElementById("emojiInstruction").textContent = correctEmoji.instruction;
-  document.getElementById("emojiGrid").setAttribute("data-correct", correctEmoji.emoji);
-  
-  const grid = document.getElementById("emojiGrid");
-  grid.innerHTML = shuffledEmojis.map(opt => 
-    `<button type="button" class="emoji-btn" data-emoji="${opt.emoji}">${opt.emoji}</button>`
-  ).join("");
-  
-  grid.querySelectorAll(".emoji-btn").forEach(btn => {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      if (btn.getAttribute("data-emoji") === grid.getAttribute("data-correct")) {
-        isHumanVerified = true;
-        document.getElementById("botDetectionModal").style.display = "none";
-      } else {
-        alert("Wrong emoji! Try again.");
-        generateEmojiChallenge();
-      }
-    });
-  });
-}
-
-function isBotDetected(email, phone) {
-  // Check 1: Speed detection (form filled in < 2 seconds)
-  const timeSinceStart = (Date.now() - formStartTime) / 1000;
-  if (timeSinceStart < 2) {
-    return true;
-  }
-  
-  // Check 2: Duplicate detection (same email or phone submitted before)
-  const submissionKey = email + phone;
-  if (submittedData.has(submissionKey)) {
-    return true;
-  }
-  
-  // Check 3: Pattern detection (multiple submissions in short time)
-  submittedData.add(submissionKey);
-  if (submittedData.size > 5) {
-    submittedData.clear();
-    return true;
-  }
-  
-  return false;
-}
-
-function showBotVerification() {
-  isHumanVerified = false;
-  document.getElementById("botDetectionModal").style.display = "flex";
-  generateEmojiChallenge();
-}
-
-// Track when form interaction starts
+// Contact form submission logic
 const contactForm = document.getElementById("contactForm");
 if (contactForm) {
-  // Start tracking time when user first interacts
-  contactForm.addEventListener("focus", () => {
-    if (!formStartTime) {
-      formStartTime = Date.now();
-    }
-  }, true);
-  
   contactForm.addEventListener("submit", async (e) => {
     e.preventDefault();
     
@@ -233,8 +157,14 @@ if (contactForm) {
     const formData = new FormData(contactForm);
     const data = Object.fromEntries(formData.entries());
     
-    // Remove captchaAnswer from data
-    delete data.captchaAnswer;
+    // Validate human checkbox
+    if (!data.humanVerify) {
+      alert("Please check the 'I'm not a robot' box.");
+      return;
+    }
+    
+    // Remove humanVerify from data before sending
+    delete data.humanVerify;
     
     // Validate country code is selected
     if (!data.countryCode) {
@@ -260,24 +190,6 @@ if (contactForm) {
       return;
     }
     
-    // Check for bot activity
-    if (isBotDetected(data.email, data.phone) || !isHumanVerified) {
-      showBotVerification();
-      return;
-    }
-    
-    // Validate CAPTCHA
-    const captchaQuestion = document.getElementById("captchaQuestion");
-    const captchaAnswer = document.getElementById("captchaAnswer");
-    const correctAnswer = parseInt(captchaQuestion.getAttribute("data-answer"));
-    
-    if (parseInt(captchaAnswer.value) !== correctAnswer) {
-      alert("Incorrect verification. Please try again.");
-      generateCaptcha();
-      captchaAnswer.value = "";
-      return;
-    }
-    
     // Combine country code with phone number
     const fullPhone = data.countryCode + data.phone;
     data.phone = fullPhone;
@@ -300,9 +212,6 @@ if (contactForm) {
       if (response.ok) {
         alert(result.message); // Successful submission
         contactForm.reset();   // Clear all inputs
-        generateCaptcha();     // Generate new CAPTCHA for next submission
-        formStartTime = null;  // Reset timer
-        isHumanVerified = false; // Reset verification
       } else {
         alert(result.error || "Failed to send message. Please try again.");
       }
@@ -312,6 +221,3 @@ if (contactForm) {
     }
   });
 }
-
-// Generate CAPTCHA when page loads
-generateCaptcha();
