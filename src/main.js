@@ -4,7 +4,7 @@ import cvImg from "./assets/CV.png";
 import introAudio from "./assets/self intoduction.mp3";
 import { About } from "./components/About.js";
 import { Blogs } from "./components/Blogs.js";
-import { Works } from "./components/work.js";
+import { Works, initIconRotation } from "./components/work.js";
 import { Contact } from "./contact.js";
 document.querySelector("#app").innerHTML = `
   <div class="stars-container">
@@ -146,6 +146,9 @@ if (playBtn && introAudioEl) {
     playBtn.querySelector("i").classList.add("fa-play");
   });
 }
+
+// Initialize icon rotation in works section
+initIconRotation();
 
 // Contact form submission logic
 const contactForm = document.getElementById("contactForm");

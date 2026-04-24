@@ -1,6 +1,27 @@
 import nftImg from "../assets/NFT.png";
 import honeyCarImg from "../assets/honey car.png";
 import dashboardImg from "../assets/dashboard ui.png";
+
+const iconList = [
+  "fa-solid fa-arrow-up-right-from-square",
+  "fa-solid fa-arrow-right",
+  "fa-solid fa-circle-arrow-right",
+  "fa-solid fa-link"
+];
+
+let iconIndex = 0;
+
+export function initIconRotation() {
+  const workLinks = document.querySelectorAll(".work-link i");
+  
+  setInterval(() => {
+    workLinks.forEach(icon => {
+      icon.className = iconList[iconIndex];
+    });
+    iconIndex = (iconIndex + 1) % iconList.length;
+  }, 1000);
+}
+
 export function Works() {
   return `
     <section id="works" class="works-section">
