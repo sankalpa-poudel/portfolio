@@ -270,7 +270,7 @@ export function initDashboardHandlers() {
 
       // Update active section
       sections.forEach(s => s.classList.remove("active"));
-      const activeSection = document.querySelector(\`[data-section="\${section}"]\`);
+      const activeSection = document.querySelector(`[data-section="${section}"]`);
       if (activeSection) {
         activeSection.classList.add("active");
       }
