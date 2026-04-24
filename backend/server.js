@@ -33,7 +33,9 @@ mongoose.connect(MONGO_URI)
     });
   });
 
-// Create Contact Schema
+// ========== SCHEMAS ==========
+
+// Contact Schema
 const contactSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true },
@@ -42,7 +44,21 @@ const contactSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
+// User Schema
+const userSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String },
+  authProvider: { type: String, enum: ['email', 'github', 'google'], default: 'email' },
+  providerId: { type: String },
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now }
+});
+
 const Contact = mongoose.model('Contact', contactSchema);
+const User = mongoose.model('User', userSchema);
+
+// ========== CONTACT ROUTES ==========
 
 // API Route to Handle Form Submission
 app.post('/api/contact', async (req, res) => {
@@ -80,6 +96,149 @@ app.delete('/api/contact/:id', async (req, res) => {
   } catch (error) {
     console.error('Error deleting contact:', error);
     res.status(500).json({ success: false, error: 'Failed to delete message.' });
+  }
+});
+
+// ========== AUTHENTICATION ROUTES ==========
+
+// Email Login
+app.post('/api/auth/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Find user
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ success: false, error: 'Invalid email or password' });
+    }
+
+    // Check password (basic comparison - in production use bcrypt)
+    if (user.password !== password) {
+      return res.status(401).json({ success: false, error: 'Invalid email or password' });
+    }
+
+    // Generate token (simple JWT-like token - in production use proper JWT)
+    const token = Buffer.from(JSON.stringify({ userId: user._id, email: user.email })).toString('base64');
+
+    res.status(200).json({
+      success: true,
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email
+      }
+    });
+  } catch (error) {
+    console.error('Login error:', error);
+    res.status(500).json({ success: false, error: 'Login failed' });
+  }
+});
+
+// Email Signup
+app.post('/api/auth/signup', async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+
+    // Check if user exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ success: false, error: 'Email already registered' });
+    }
+
+    // Create new user
+    const newUser = new User({
+      name,
+      email,
+      password, // In production, hash with bcrypt
+      authProvider: 'email'
+    });
+
+    await newUser.save();
+
+    // Generate token
+    const token = Buffer.from(JSON.stringify({ userId: newUser._id, email: newUser.email })).toString('base64');
+
+    res.status(201).json({
+      success: true,
+      token,
+      user: {
+        id: newUser._id,
+        name: newUser.name,
+        email: newUser.email
+      }
+    });
+  } catch (error) {
+    console.error('Signup error:', error);
+    res.status(500).json({ success: false, error: 'Signup failed' });
+  }
+});
+
+// GitHub OAuth Callback
+app.post('/api/auth/github/callback', async (req, res) => {
+  try {
+    const { name, email, githubId } = req.body;
+
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      user = new User({
+        name,
+        email,
+        authProvider: 'github',
+        providerId: githubId
+      });
+      await user.save();
+    }
+
+    const token = Buffer.from(JSON.stringify({ userId: user._id, email: user.email })).toString('base64');
+
+    res.status(200).json({
+      success: true,
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email
+      }
+    });
+  } catch (error) {
+    console.error('GitHub auth error:', error);
+    res.status(500).json({ success: false, error: 'GitHub authentication failed' });
+  }
+});
+
+// Google OAuth Callback
+app.post('/api/auth/google/callback', async (req, res) => {
+  try {
+    const { name, email, googleId } = req.body;
+
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      user = new User({
+        name,
+        email,
+        authProvider: 'google',
+        providerId: googleId
+      });
+      await user.save();
+    }
+
+    const token = Buffer.from(JSON.stringify({ userId: user._id, email: user.email })).toString('base64');
+
+    res.status(200).json({
+      success: true,
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email
+      }
+    });
+  } catch (error) {
+    console.error('Google auth error:', error);
+    res.status(500).json({ success: false, error: 'Google authentication failed' });
   }
 });
 

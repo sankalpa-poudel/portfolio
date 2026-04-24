@@ -6,48 +6,32 @@ import { About } from "./components/About.js";
 import { Blogs } from "./components/Blogs.js";
 import { Works, initIconRotation } from "./components/work.js";
 import { Contact } from "./contact.js";
-document.querySelector("#app").innerHTML = `
-  <div class="stars-container">
-    <span class="shooting-star" style="left: 10%; animation-delay: 0s; animation-duration: 3s;"></span>
-    <span class="shooting-star" style="left: 40%; animation-delay: 1.2s; animation-duration: 2.5s;"></span>
-    <span class="shooting-star" style="left: 70%; animation-delay: 2.5s; animation-duration: 4s;"></span>
-    <span class="shooting-star" style="left: 90%; animation-delay: 0.5s; animation-duration: 3.2s;"></span>
-    <span class="shooting-star" style="left: 20%; animation-delay: 1.8s; animation-duration: 2.9s;"></span>
-    <span class="shooting-star" style="left: 60%; animation-delay: 3.1s; animation-duration: 3.7s;"></span>
-    <span class="shooting-star" style="left: 85%; animation-delay: 4s; animation-duration: 2.2s;"></span>
-  </div>
-  <div class="container">
-    <header class="navbar">
-      <div class="logo">
-        <span class="logo-icon">S</span>
-        <span class="logo-text">Sankalpa <span class="highlight-Blue">Poudel</span></span>
-      </div>
-      <nav class="nav-links">
-        <a href="#about">About</a>
-        <a href="#blogs">Blogs</a>
-        <a href="#service">Service</a>
-        <a href="#works">Works</a>
-        <a href="#testimonials">Testimonials</a>
-        <a href="#contact">Contact</a>
-      </nav>
-      <a href="#contact" class="btn-primary" style="text-decoration: none;">Contact Me</a>
-    </header>
+import { Login, initLoginHandlers } from "./components/Login.js";
+import { BusinessDashboard, initDashboardHandlers } from "./components/Dashboard.js";
+import { isAuthenticated } from "./auth.js";
 
-    <main class="hero">
-      <div class="hero-left">
-        <p class="tagline">Sankalpa Poudel <i class="fa-solid fa-chevron-right"></i></p>
-        <h1 class="hero-title">
-          Product Designer <span class="highlight-purple">&</span><br>
-          <span class="highlight-purple">visual Developer.</span>
-        </h1>
-        <p class="hero-desc">
-          I specialize in UI/UX Design, Responsive Web Design,<br>
-          and visual Development.
-        </p>
-        
-        <div class="hero-buttons">
-          <a href="${cvImg}" download="Sankalpa_Poudel_CV.png" class="btn-text highlight-purple-text">
-            <i class="fa-solid fa-cloud-arrow-down"></i> Download CV
+const appContainer = document.querySelector("#app");
+
+// Check if user is authenticated
+const authenticated = isAuthenticated();
+
+if (authenticated) {
+  // Show Dashboard
+  appContainer.innerHTML = BusinessDashboard();
+  
+  // Initialize dashboard handlers
+  setTimeout(() => {
+    initDashboardHandlers();
+  }, 100);
+} else {
+  // Show Login Page
+  appContainer.innerHTML = Login();
+  
+  // Initialize login handlers
+  setTimeout(() => {
+    initLoginHandlers();
+  }, 100);
+}
           </a>
           <a href="${cvImg}" target="_blank" class="btn-text highlight-purple-text">
             <i class="fa-solid fa-eye"></i> View CV
