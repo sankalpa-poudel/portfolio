@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage | Project</title>
+    <meta name="description" content="A simple products website: browse products, view details, and optionally login/register. Responsive on mobile, tablet, and desktop.">
+    <meta name="robots" content="index,follow">
+    <meta property="og:title" content="My Store">
+    <meta property="og:description" content="Browse products and view details. Works on all devices.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="image/logo.jpg">
+    <link rel="icon" href="image/logo.jpg" type="image/jpeg">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html" aria-label="Homepage">
+                <img src="image/logo.jpg" alt="" />
+                <span>My Store</span>
+            </a>
+            <nav class="nav" aria-label="Primary">
+                <a href="index.html" aria-current="page">Home</a>
+                <a href="productlist.html">Products</a>
+                <a href="#about">About</a>
+                <a href="#devices">Devices</a>
+                <a href="#credits">Credits</a>
+            </nav>
+            <div class="nav-right">
+                <a class="btn" href="loginform.html">Login</a>
+                <a class="btn primary" href="rigesterform.html">Register</a>
+            </div>
+        </div>
+    </header>
+
+    <main id="main" class="container" aria-label="Main content">
+        <section class="card hero" aria-label="Intro">
+            <div>
+                <h1>Simple products website</h1>
+                <p>Browse products and open details. Login/register is optional (you can use the site as a guest).</p>
+                <div class="hero-actions">
+                    <a class="btn primary" href="productlist.html">Browse products</a>
+                    <a class="btn" href="loginform.html">Login (optional)</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="muted">Quick links</div>
+                <div class="small" style="margin-top:8px; display:flex; gap:10px; flex-wrap:wrap">
+                    <a class="btn" href="productlist.html">View all products</a>
+                    <a class="btn" href="productview.html#tv">View a product</a>
+                </div>
+            </div>
+        </section>
+
+        <section style="margin-top:16px">
+            <h2 style="margin: 0 0 10px">Featured</h2>
+            <div class="grid products">
+                <article class="card product">
+                    <img src="image/tv.jpg" alt="4K Smart TV" />
+                    <div>
+                        <h3>4K Smart TV</h3>
+                        <div class="price">$549.99 <small>USD</small></div>
+                        <p class="muted">Crisp 4K picture, smart apps, and smooth streaming for your living room.</p>
+                    </div>
+                    <div>
+                        <a class="btn primary" href="productview.html#tv">View</a>
+                        <a class="btn" href="productlist.html">All products</a>
+                    </div>
+                </article>
+
+                <article class="card product">
+                    <img src="image/laptop.webp" alt="Work & Study Laptop" />
+                    <div>
+                        <h3>Work &amp; Study Laptop</h3>
+                        <div class="price">$699.00 <small>USD</small></div>
+                        <p class="muted">A fast, lightweight laptop for everyday productivity and online classes.</p>
+                    </div>
+                    <div>
+                        <a class="btn primary" href="productview.html#laptop">View</a>
+                        <a class="btn" href="productlist.html">All products</a>
+                    </div>
+                </article>
+
+                <article class="card product">
+                    <img src="image/pc.jpg" alt="Desktop PC" />
+                    <div>
+                        <h3>Desktop PC</h3>
+                        <div class="price">$899.00 <small>USD</small></div>
+                        <p class="muted">A reliable desktop setup for multitasking, browsing, and home office use.</p>
+                    </div>
+                    <div>
+                        <a class="btn primary" href="productview.html#pc">View</a>
+                        <a class="btn" href="productlist.html">All products</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="about" class="card" style="margin-top:16px">
+            <h2 style="margin:0 0 10px">About this website</h2>
+            <p class="muted" style="margin:0">
+                This is a front-end demo store: it shows a product list and product details.
+                Login and registration are optional.
+            </p>
+        </section>
+
+        <section id="devices" class="card" style="margin-top:14px">
+            <h2 style="margin:0 0 10px">Works on all devices</h2>
+            <div class="grid products">
+                <div class="card" style="padding:12px">
+                    <div style="display:flex; gap:10px; align-items:center">
+                        <i class="bi bi-phone" aria-hidden="true"></i>
+                        <strong>Mobile</strong>
+                    </div>
+                    <div class="muted small" style="margin-top:6px">Responsive layout for small screens.</div>
+                </div>
+                <div class="card" style="padding:12px">
+                    <div style="display:flex; gap:10px; align-items:center">
+                        <i class="bi bi-tablet" aria-hidden="true"></i>
+                        <strong>Tablet</strong>
+                    </div>
+                    <div class="muted small" style="margin-top:6px">Two-column layouts where space allows.</div>
+                </div>
+                <div class="card" style="padding:12px">
+                    <div style="display:flex; gap:10px; align-items:center">
+                        <i class="bi bi-pc-display" aria-hidden="true"></i>
+                        <strong>Desktop</strong>
+                    </div>
+                    <div class="muted small" style="margin-top:6px">Multi-column product grid on wide screens.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="credits" class="card" style="margin-top:14px">
+            <h2 style="margin:0 0 10px">Open-source credits</h2>
+            <ul style="margin:0; padding-left:18px" class="muted">
+                <li>Icons: Bootstrap Icons (loaded from the official CDN).</li>
+                <li>All code in this project is plain HTML/CSS/JS.</li>
+            </ul>
+        </section>
+
+        <section id="html-table" class="card" style="margin-top:14px">
+            <h2 style="margin:0 0 10px">HTML Table (Q1–Q9)</h2>
+
+            <h3 style="margin:12px 0 8px">Question 1: Basic Table Structure</h3>
+            <table>
+                <tr>
+                    <td>Smartphone</td>
+                    <td>Headphones</td>
+                </tr>
+                <tr>
+                    <td>Laptop</td>
+                    <td>Smartwatch</td>
+                </tr>
+            </table>
+
+            <h3 style="margin:14px 0 8px">Question 2: Add Table Borders</h3>
+            <table border="1">
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>4</td>
+                </tr>
+            </table>
+
+            <h3 style="margin:14px 0 8px">Question 3: Adjust Table Size</h3>
+            <table border="1" style="width:60%; height:150px;">
+                <tr>
+                    <td>Row 1, Col 1</td>
+                    <td>Row 1, Col 2</td>
+                </tr>
+                <tr>
+                    <td>Row 2, Col 1</td>
+                    <td>Row 2, Col 2</td>
+                </tr>
+            </table>
+
+            <h3 style="margin:14px 0 8px">Question 4: Add a Table Header</h3>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Category</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Laptop</td>
+                        <td>Electronics</td>
+                    </tr>
+                    <tr>
+                        <td>Chair</td>
+                        <td>Furniture</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin:14px 0 8px">Question 5: Add Cell Padding (10px)</h3>
+            <table border="1" cellpadding="10">
+                <tr>
+                    <td>Padded 1</td>
+                    <td>Padded 2</td>
+                </tr>
+                <tr>
+                    <td>Padded 3</td>
+                    <td>Padded 4</td>
+                </tr>
+            </table>
+
+            <h3 style="margin:14px 0 8px">Question 6: Add Cell Spacing (5px)</h3>
+            <table border="1" cellspacing="5">
+                <tr>
+                    <td>Spaced 1</td>
+                    <td>Spaced 2</td>
+                </tr>
+                <tr>
+                    <td>Spaced 3</td>
+                    <td>Spaced 4</td>
+                </tr>
+            </table>
+
+            <h3 style="margin:14px 0 8px">Question 7: Use Colspan</h3>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th colspan="2">Products Table</th>
+                    </tr>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>TV</td>
+                        <td>$549.99</td>
+                    </tr>
+                    <tr>
+                        <td>Laptop</td>
+                        <td>$699.00</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin:14px 0 8px">Question 8: Use Rowspan</h3>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Student</th>
+                        <th>Subject</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="2">Alex</td>
+                        <td>Math</td>
+                    </tr>
+                    <tr>
+                        <td>Science</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="margin:14px 0 8px">Question 9: Final Combined Task (All Steps)</h3>
+            <table
+                border="1"
+                cellpadding="10"
+                cellspacing="5"
+                style="width:60%; height:150px;"
+            >
+                <thead>
+                    <tr>
+                        <th colspan="2">Final Combined Table</th>
+                    </tr>
+                    <tr>
+                        <th>Label</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="2">Merged (rowspan=2)</td>
+                        <td>Row 1 value</td>
+                    </tr>
+                    <tr>
+                        <td>Row 2 value</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container small">
+            <div>© 2026 My Store</div>
+            <div class="muted">Responsive, static products (no JS required)</div>
+        </div>
+    </footer>
+</body>
+</html>
