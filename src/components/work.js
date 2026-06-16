@@ -70,6 +70,34 @@ export function Works() {
             <a href="#" class="work-link" title="View Project"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
           </div>
         </div>
+
+        <!-- Work Card 4 -->
+        <div class="work-card">
+          <div class="work-image"><img src="${dashboardImg}" alt="Full Stack Bootcamp" style="width: 100%; height: 100%; object-fit: cover;"></div>
+          <div class="work-info">
+            <h3 class="work-title">Full Stack Bootcamp</h3>
+            <p class="work-desc">Completed intensive bootcamp training focused on modern frontend and backend development workflows.</p>
+            <div class="work-tags">
+              <span class="work-tag">Bootcamp</span>
+              <span class="work-tag">Full Stack</span>
+            </div>
+            <a href="#" class="work-link" title="View Details"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+
+        <!-- Work Card 5 -->
+        <div class="work-card">
+          <div class="work-image"><img src="${nftImg}" alt="Web Development Certificate" style="width: 100%; height: 100%; object-fit: cover;"></div>
+          <div class="work-info">
+            <h3 class="work-title">Web Development Certificate</h3>
+            <p class="work-desc">Earned certification validating skills in responsive design, JavaScript development, and deployment best practices.</p>
+            <div class="work-tags">
+              <span class="work-tag">Certificate</span>
+              <span class="work-tag">Achievement</span>
+            </div>
+            <a href="#" class="work-link" title="View Certificate"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
       </div>
     </section>
   `;
